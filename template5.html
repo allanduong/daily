@@ -1,0 +1,178 @@
+<html>
+
+<head>
+
+
+    <sytle>
+
+        
+    </sytle>
+
+
+</head>
+
+
+<body>
+    <h1> template 5</h1>
+
+    <h2><span id="daySpan">Today</span>'s Special</h2>
+    <p>Click below to view other daily specials:</p>
+
+    <p><a href="?day=0"> Monday </a></p>
+    <p><a href="?day=1"> Tuesday </a></p>
+    <p><a href="?day=2"> Wednesday </a></p>
+    <p><a href="?day=3"> Thursday </a></p>
+    <p><a href="?day=4"> Friday </a></p>
+    <p><a href="?day=5"> Saturday </a></p>
+    <p><a href="?day=6"> Sunday </a></p>
+
+    <span id="output"> </span>
+
+</body>
+
+
+<script>
+
+    let myDate = '';
+
+    //grabs data from Qstring
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (urlParams.has('day')) {
+        myDay = urlParams.get('day');
+        myDay = parseInt(myDay); //helps switch
+    }
+    else {
+        let myDate = new Date();
+        myDay = myDate.getDay;
+    }
+
+    let coffee = '';
+
+    let currentDate = new Date();
+    let currentDay = currentDate.getDay();
+
+
+    switch (myDay) {
+
+        case 0:
+
+            coffee = {
+                pic: 'https://images.unsplash.com/photo-1563201180-1c57435ae249?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+                alt: 'Mocha',
+                name: 'Mocha',
+                color: 'brown',
+                day: 'Monday',
+                desc: `Full of chocolatey goodness!`
+            }
+
+            break;
+
+        case 1:
+
+            coffee = {
+                pic: 'https://picsum.photos/id/431/300',
+                alt: 'Pumpkin Spice',
+                name: 'Pumpkin Spice',
+                color: 'coral',
+                day: 'Tuesday',
+                desc: `NOT one of the Spice Girls!`
+            }
+
+            break;
+
+        case 2:
+
+            coffee = {
+                pic: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
+                alt: 'Vanilla',
+                name: 'Vanilla',
+                color: 'white',
+                day: 'Wednesday',
+                desc: `Eat it`
+            }
+
+            break;
+
+
+        case 3:
+
+            coffee = {
+                pic: 'https://images.unsplash.com/photo-1559124058-12349eba3b42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+                alt: 'Chocolate Milk',
+                name: 'Chocolate Milk',
+                color: 'blue',
+                day: 'Thursday',
+                desc: `Yummy in my Tummy`
+            }
+
+            break;
+
+
+        case 4:
+
+            coffee = {
+                pic: 'https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+                alt: 'Normal Coffee',
+                name: 'Normal Coffee',
+                color: 'yellow',
+                day: 'Friday',
+                desc: `Delicious is the Norm!`
+            }
+            break;
+
+
+        case 5:
+
+            coffee = {
+                pic: 'https://images.unsplash.com/photo-1553744616-032542362090?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+                alt: 'Hot water',
+                name: 'Hot Water',
+                color: 'orange',
+                day: 'Saturday',
+                desc: `Saturday is hot water`
+            }
+            break;
+
+        case 6:
+
+            coffee = {
+                pic: 'https://images.unsplash.com/photo-1576269920328-c406bc3af7c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+                alt: 'Cold Water',
+                name: 'Cold Water',
+                color: 'purple',
+                day: 'Sunday',
+                desc: `Sunday Water`
+            }
+
+            break;
+
+    }
+
+    function coffeeTemplate(obj) {
+
+        return `<div class = "coffee">  
+
+                <h2 style ="color:${obj.color}">${obj.name}</h2> 
+
+                <p><img src="${obj.pic}" alt="${obj.alt}" /></p> 
+
+                <p>${obj.day}'s special is ${obj.name}! ${obj.desc}</p> 
+
+            </div>`;
+
+    }
+
+    let coffeeOutput = coffeeTemplate(coffee);
+    document.getElementById('output').innerHTML = coffeeOutput;
+    if(currentDay == myDay){
+        document.getElementById('dayspan').innerHTML = 'Today';
+    }else{
+        document.getElementById('daySpan').innerHTML = coffee.day;
+    }
+
+
+</script>
+
+</html>
